@@ -1,0 +1,123 @@
+name: ravdess
+description: 'The Ryerson Audio-Visual Database of Emotional Speech and Song The Ryerson
+  Audio-Visual Database of Emotional Speech and Song (RAVDESS) contains 7356 files
+  (total size: 24.8 GB). The database contains 24 professional actors (12 female,
+  12 male), vocalizing two lexically-matched statements in a neutral North American
+  accent. Speech includes calm, happy, sad, angry, fearful, surprise, and disgust
+  expressions, and song contains calm, happy, sad, angry, and fearful emotions. Each
+  expression is produced at two levels of emotional intensity (normal, strong), with
+  an additional neutral expression. All conditions are available in three modality
+  formats: Audio-only (16bit, 48kHz .wav), Audio-Video (720p H.264, AAC 48kHz, .mp4),
+  and Video-only (no sound). Note, there are no song files for Actor_18.'
+source: https://doi.org/10.5281/zenodo.1188975
+usage: research
+languages: [English]
+license: CC-BY-NC-SA-4.0
+license_url: http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+media:
+  microphone: {type: audio, format: wav, channels: 1, sampling_rate: 48000}
+raters:
+  gold: {type: human}
+schemes:
+  duration: {dtype: time}
+  emotion:
+    dtype: str
+    labels:
+      anger: {original: angry}
+      calm: {original: calm}
+      disgust: {original: disgust}
+      fear: {original: fearful}
+      happiness: {original: happy}
+      neutral: {original: neutral}
+      sadness: {original: sad}
+      surprise: {original: surprised}
+  emotional intensity:
+    dtype: str
+    labels: [normal, strong]
+  speaker:
+    dtype: str
+    labels:
+      '01': {gender: male, language: English}
+      '02': {gender: female, language: English}
+      '03': {gender: male, language: English}
+      '04': {gender: female, language: English}
+      '05': {gender: male, language: English}
+      '06': {gender: female, language: English}
+      '07': {gender: male, language: English}
+      08: {gender: female, language: English}
+      09: {gender: male, language: English}
+      '10': {gender: female, language: English}
+      '11': {gender: male, language: English}
+      '12': {gender: female, language: English}
+      '13': {gender: male, language: English}
+      '14': {gender: female, language: English}
+      '15': {gender: male, language: English}
+      '16': {gender: female, language: English}
+      '17': {gender: male, language: English}
+      '18': {gender: female, language: English}
+      '19': {gender: male, language: English}
+      '20': {gender: female, language: English}
+      '21': {gender: male, language: English}
+      '22': {gender: female, language: English}
+      '23': {gender: male, language: English}
+      '24': {gender: female, language: English}
+  transcription:
+    description: Sentence produced by actor.
+    dtype: str
+    labels: [Kids are talking by the door, Dogs are sitting by the door]
+  vocal channel:
+    dtype: str
+    labels: [speech, song]
+splits:
+  dev: {description: Unofficial speaker-independent dev split, type: dev}
+  test: {description: Unofficial speaker-independent test split, type: test}
+  train: {description: Unofficial speaker-independent train split, type: train}
+tables:
+  emotion.song.dev:
+    type: filewise
+    split_id: dev
+    columns:
+      emotion: {scheme_id: emotion}
+      emotional intensity: {scheme_id: emotional intensity}
+  emotion.song.test:
+    type: filewise
+    split_id: test
+    columns:
+      emotion: {scheme_id: emotion}
+      emotional intensity: {scheme_id: emotional intensity}
+  emotion.song.train:
+    type: filewise
+    split_id: train
+    columns:
+      emotion: {scheme_id: emotion}
+      emotional intensity: {scheme_id: emotional intensity}
+  emotion.speech.dev:
+    type: filewise
+    split_id: dev
+    columns:
+      emotion: {scheme_id: emotion}
+      emotional intensity: {scheme_id: emotional intensity}
+  emotion.speech.test:
+    type: filewise
+    split_id: test
+    columns:
+      emotion: {scheme_id: emotion}
+      emotional intensity: {scheme_id: emotional intensity}
+  emotion.speech.train:
+    type: filewise
+    split_id: train
+    columns:
+      emotion: {scheme_id: emotion}
+      emotional intensity: {scheme_id: emotional intensity}
+  files:
+    type: filewise
+    columns:
+      speaker: {scheme_id: speaker}
+      duration: {scheme_id: duration}
+      transcription: {scheme_id: transcription}
+      vocal channel: {scheme_id: vocal channel}
+audb:
+  root: /Users/alfred/Documents/SER/ravdess/1.1.3/fe182b91
+  version: 1.1.3
+  flavor: {bit_depth: null, channels: null, format: wav, mixdown: true, sampling_rate: 16000}
+  complete: true
