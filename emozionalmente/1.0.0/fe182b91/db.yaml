@@ -1,0 +1,157 @@
+name: emozionalmente
+description: 'Emozionalmente is an extensive, crowdsourced Italian emotional speech
+  corpus. The dataset consists of 6902 labeled samples acted out by 431 amateur actors
+  while verbalizing 18 different sentences expressing the Big Six emotions (anger,
+  disgust, fear, joy, sadness, surprise) plus neutrality. Labels represent the emotional
+  communicative intention of the actors (i.e., the seven emotional states). Recordings
+  were generally obtained with non-professional equipment. They are .wav files, mono-channel,
+  and have a sample size of 16 bits and a sample rate of 16000 Hz. Each audio recording
+  lasts 3.81 seconds (SD = 0.99 seconds). The emotional content of the clips were
+  validated by asking 829 humans (5 evaluations per audio) to guess the emotion contained
+  in each recording. Humans obtained a general accuracy of 66%. '
+source: https://zenodo.org/record/6569824#.ZGsf1hlByV4
+usage: commercial
+languages: [ita]
+author: Fabio Catania
+license: CC-BY-4.0
+license_url: https://creativecommons.org/licenses/by/4.0/
+schemes:
+  age: {description: Age of speaker, dtype: int, minimum: 0}
+  emotion:
+    dtype: str
+    labels:
+      anger: {original: anger}
+      disgust: {original: disgust}
+      fear: {original: fear}
+      happiness: {original: joy}
+      neutral: {original: neutrality}
+      no_agreement: {original: no_agreement}
+      sadness: {original: sadness}
+      surprise: {original: surprise}
+  emotion.agreement: {dtype: float, minimum: 0, maximum: 1}
+  gender:
+    description: Gender of speaker
+    dtype: str
+    labels: [female, male, other]
+  mother_tongue:
+    description: Mother tongue of speaker
+    dtype: str
+    labels: [italian]
+  speaker: {dtype: str, labels: speaker}
+  transcription:
+    dtype: str
+    labels: {s0: E’ andato a scuola dopo pranzo, s1: Tornerà a casa presto, s2: Vado
+        in biblioteca, s3: Zia Marta ha detto che devo stare a casa stasera, s4: E’
+        una notte stellata, s5: Tommaso ha detto che dovevo scegliere io cosa fare,
+      s6: Il capo mi ha affidato un altro lavoro, s7: Ieri un gatto ha bevuto dalla
+        tazza, s8: Non sapevo che fosse in città, s9: Vorrei il numero telefonico
+        del Signor Piatti, s10: Ho preso 6 nella verifica di matematica, s11: Giovanni
+        parte per Roma domani, s12: Il cane ha riportato qui la palla, s13: La cascata
+        fa molto rumore, s14: L’ho incontrato oggi dopo 2 anni, s15: Gli operai si
+        alzano presto, s16: Oggi c’è una partita di basket, s17: E’ impegnato in una
+        riunione}
+  votes: {dtype: int, minimum: 0}
+splits:
+  dev: {description: Unofficial speaker independent dev split, type: dev}
+  test: {description: Unofficial speaker independent test split, type: test}
+  train: {description: Unofficial speaker independent train split, type: train}
+tables:
+  emotion.categories.dev.desired:
+    type: filewise
+    description: The categorical emotions the actors were asked to portray (unofficial
+      speaker independent dev split).
+    split_id: dev
+    columns:
+      emotion: {scheme_id: emotion}
+  emotion.categories.dev.gold_standard:
+    type: filewise
+    description: The gold standard table of the unofficial speaker independent dev
+      split for emotion categories.
+    columns:
+      emotion: {description: 'The most commonly voted for categorical emotion, or
+          no_agreement when there is more than one.', scheme_id: emotion}
+      emotion.agreement: {description: The proportion of raters that voted for the
+          most commonly selected emotion., scheme_id: emotion.agreement}
+  emotion.categories.dev.votes:
+    type: filewise
+    description: The votes for each emotion (unofficial speaker independent dev split)
+    columns:
+      anger: {description: The number of times raters voted for anger., scheme_id: votes}
+      disgust: {description: The number of times raters voted for disgust., scheme_id: votes}
+      fear: {description: The number of times raters voted for fear., scheme_id: votes}
+      happiness: {description: The number of times raters voted for happiness., scheme_id: votes}
+      neutral: {description: The number of times raters voted for neutral., scheme_id: votes}
+      sadness: {description: The number of times raters voted for sadness., scheme_id: votes}
+      surprise: {description: The number of times raters voted for surprise., scheme_id: votes}
+  emotion.categories.test.desired:
+    type: filewise
+    description: The categorical emotions the actors were asked to portray (unofficial
+      speaker independent test split).
+    split_id: test
+    columns:
+      emotion: {scheme_id: emotion}
+  emotion.categories.test.gold_standard:
+    type: filewise
+    description: The gold standard table of the unofficial speaker independent test
+      split for emotion categories.
+    columns:
+      emotion: {description: 'The most commonly voted for categorical emotion, or
+          no_agreement when there is more than one.', scheme_id: emotion}
+      emotion.agreement: {description: The proportion of raters that voted for the
+          most commonly selected emotion., scheme_id: emotion.agreement}
+  emotion.categories.test.votes:
+    type: filewise
+    description: The votes for each emotion (unofficial speaker independent test split)
+    columns:
+      anger: {description: The number of times raters voted for anger., scheme_id: votes}
+      disgust: {description: The number of times raters voted for disgust., scheme_id: votes}
+      fear: {description: The number of times raters voted for fear., scheme_id: votes}
+      happiness: {description: The number of times raters voted for happiness., scheme_id: votes}
+      neutral: {description: The number of times raters voted for neutral., scheme_id: votes}
+      sadness: {description: The number of times raters voted for sadness., scheme_id: votes}
+      surprise: {description: The number of times raters voted for surprise., scheme_id: votes}
+  emotion.categories.train.desired:
+    type: filewise
+    description: The categorical emotions the actors were asked to portray (unofficial
+      speaker independent train split).
+    split_id: train
+    columns:
+      emotion: {scheme_id: emotion}
+  emotion.categories.train.gold_standard:
+    type: filewise
+    description: The gold standard table of the unofficial speaker independent train
+      split for emotion categories.
+    columns:
+      emotion: {description: 'The most commonly voted for categorical emotion, or
+          no_agreement when there is more than one.', scheme_id: emotion}
+      emotion.agreement: {description: The proportion of raters that voted for the
+          most commonly selected emotion., scheme_id: emotion.agreement}
+  emotion.categories.train.votes:
+    type: filewise
+    description: The votes for each emotion (unofficial speaker independent train
+      split)
+    columns:
+      anger: {description: The number of times raters voted for anger., scheme_id: votes}
+      disgust: {description: The number of times raters voted for disgust., scheme_id: votes}
+      fear: {description: The number of times raters voted for fear., scheme_id: votes}
+      happiness: {description: The number of times raters voted for happiness., scheme_id: votes}
+      neutral: {description: The number of times raters voted for neutral., scheme_id: votes}
+      sadness: {description: The number of times raters voted for sadness., scheme_id: votes}
+      surprise: {description: The number of times raters voted for surprise., scheme_id: votes}
+  files:
+    type: filewise
+    columns:
+      speaker: {scheme_id: speaker}
+      transcription: {scheme_id: transcription}
+misc_tables:
+  speaker:
+    levels: {speaker: str}
+    columns:
+      age: {scheme_id: age}
+      gender: {scheme_id: gender}
+      mother_tongue: {scheme_id: mother_tongue}
+audb:
+  root: /Users/alfred/Documents/SER/emozionalmente/1.0.0/fe182b91
+  version: 1.0.0
+  flavor: {bit_depth: null, channels: null, format: wav, mixdown: true, sampling_rate: 16000}
+  complete: true
